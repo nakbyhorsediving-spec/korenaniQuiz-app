@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本語学習 - たべもの</title>
+    <style>
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .page {
+            display: none; /* デフォルトは非表示 */
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .page.active {
+            display: block; /* アクティブなページのみ表示 */
+        }
+
+        .title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 0;
+            color: #ff6b6b;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #4ecdc4;
+        }
+
+        .vietnamese {
+            font-size: 18px;
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        .speaker-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 5px;
+            transition: transform 0.2s;
+        }
+
+        .speaker-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        button.main-btn {
+            background-color: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button.main-btn:hover {
+            background-color: #3db8b0;
+        }
+
+        button.back-btn {
+            background-color: #ccc;
+            color: #333;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        button.back-btn:hover {
+            background-color: #bbb;
+        }
+
+        .food-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 15px;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="home-page" class="page active">
+        <div class="title-container">
+            <h1>たべもの</h1>
+            <button class="speaker-btn" onclick="speak('たべもの')">🔊</button>
+        </div>
+        <p class="vietnamese">Thức ăn</p>
+        
+        <div class="menu-buttons">
+            <button class="main-btn" onclick="changePage('meat-page')">にく</button>
+            <button class="main-btn" onclick="changePage('veg-page')">やさい</button>
+            <button class="main-btn" onclick="changePage('fruit-page')">くだもの</button>
+        </div>
+    </div>
+
+    <div id="meat-page" class="page">
+        <h2>にく</h2>
+        <div class="menu-buttons">
+            <button class="main-btn" onclick="showImagePage('ぎゅうにく', 'gyuniku.jpg', 'meat-page')">ぎゅうにく</button>
+            <button class="main-btn" onclick="showImagePage('ぶたにく', 'butaniku.jpg', 'meat-page')">ぶたにく</button>
+            <button class="main-btn" onclick="showImagePage('とりにく', 'toriniku.jpg', 'meat-page')">とりにく</button>
+        </div>
+        <button class="back-btn" onclick="changePage('home-page')">Quay lại (戻る)</button>
+    </div>
+
+    <div id="veg-page" class="page">
+        <h2>やさい</h2>
+        <div class="menu-buttons">
+            <button class="main-btn" onclick="showImagePage('きゃべつ', 'kyabetsu.jpg', 'veg-page')">きゃべつ</button>
+            <button class="main-btn" onclick="showImagePage('にんじん', 'ninjin.jpg', 'veg-page')">にんじん</button>
+            <button class="main-btn" onclick="showImagePage('じゃがいも', 'jagaimo.jpg', 'veg-page')">じゃがいも</button>
+            <button class="main-btn" onclick="showImagePage('もやし', 'moyashi.jpg', 'veg-page')">もやし</button>
+            <button class="main-btn" onclick="showImagePage('なすび', 'nasubi.jpg', 'veg-page')">なすび</button>
+            <button class="main-btn" onclick="showImagePage('トマト', 'tomato.jpg', 'veg-page')">トマト</button>
+            <button class="main-btn" onclick="showImagePage('れんこん', 'renkon.jpg', 'veg-page')">れんこん</button>
+        </div>
+        <button class="back-btn" onclick="changePage('home-page')">Quay lại (戻る)</button>
+    </div>
+
+    <div id="fruit-page" class="page">
+        <h2>くだもの</h2>
+        <div class="menu-buttons">
+            <button class="main-btn" onclick="showImagePage('りんご', 'ringo.jpg', 'fruit-page')">りんご</button>
+            <button class="main-btn" onclick="showImagePage('すいか', 'suika.jpg', 'fruit-page')">すいか</button>
+            <button class="main-btn" onclick="showImagePage('みかん', 'mikan.jpg', 'fruit-page')">みかん</button>
+            <button class="main-btn" onclick="showImagePage('バナナ', 'banana.jpg', 'fruit-page')">バナナ</button>
+            <button class="main-btn" onclick="showImagePage('もも', 'momo.jpg', 'fruit-page')">もも</button>
+        </div>
+        <button class="back-btn" onclick="changePage('home-page')">Quay lại (戻る)</button>
+    </div>
+
+    <div id="image-page" class="page">
+        <div class="title-container">
+            <h1 id="image-title">名前</h1>
+            <button class="speaker-btn" onclick="speakCurrentImageName()">🔊</button>
+        </div>
+        <img id="food-img-tag" class="food-image" src="" alt="food image">
+        
+        <button id="dynamic-back-btn" class="back-btn" onclick="">Quay lại (戻る)</button>
+    </div>
+
+    <script>
+        // 画像が保存されている共通のローカルフォルダパス
+        const IMAGE_DIR = "C:/Users/admin/iCloudDrive/AI_program_日本語学習/korenaniQuiz/images/";
+
+        // 音声読み上げ機能（Web Speech API）
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ja-JP'; // 日本語に設定
+                utterance.rate = 0.9;     // 少しだけゆっくり（学習者向け）
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("お使いのブラウザは音声読み上げに対応していません。");
+            }
+        }
+
+        // 画像ページ用：現在の表示名を読み上げる
+        function speakCurrentImageName() {
+            const titleText = document.getElementById('image-title').innerText;
+            speak(titleText);
+        }
+
+        // ページの切り替え処理
+        function changePage(pageId) {
+            // 全てのページを非表示にする
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // 指定されたページだけを表示する
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // 画像ページの表示処理（タイトル、画像ファイル名、戻る先のページIDをセットする）
+        function showImagePage(title, imageName, previousPageId) {
+            document.getElementById('image-title').innerText = title;
+            
+            // ローカルフォルダパスとファイル名を結合してフルパスを設定
+            document.getElementById('food-img-tag').src = IMAGE_DIR + imageName;
+            
+            // 戻るボタンの動作を、1つ前のページ（カテゴリページ）に設定
+            const backBtn = document.getElementById('dynamic-back-btn');
+            backBtn.setAttribute('onclick', `changePage('${previousPageId}')`);
+
+            // 音声で名前を一度読み上げる
+            speak(title);
+
+            // 画像ページへ切り替え
+            changePage('image-page');
+        }
+    </script>
+</body>
+</html>
